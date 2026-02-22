@@ -25,6 +25,19 @@
     --btn-text: #000000;
 }
 
+/* STRICT BUTTON OVERRIDE FOR HIGH CONTRAST */
+[data-theme="high-contrast"] .btn-external,
+[data-theme="high-contrast"] .btn-submit,
+[data-theme="high-contrast"] .btn-next,
+[data-theme="high-contrast"] .btn-nav,
+[data-theme="high-contrast"] .btn-footer-nav {
+    background-color: var(--btn-bg) !important;
+    color: var(--btn-text) !important;
+    border: 2px solid #000 !important;
+    font-weight: 900 !important;
+}
+
+
 /* =====================================================================
    2. GLOBAL RESET & TYPOGRAPHY
    ===================================================================== */
@@ -204,9 +217,9 @@ body {
    ===================================================================== */
 .grid-container {
     display: grid;
-    /* CHANGED: minmax lowered from 280px to 240px to fit old/small phones */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
+    /* Forces exactly 3 equal columns on large screens for perfect 6-card symmetry */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
     padding: 50px 5%;
     max-width: 1200px;
     margin: 0 auto;
@@ -215,7 +228,7 @@ body {
 .card {
     background: var(--card-bg);
     border-radius: var(--border-radius);
-    padding: 25px 20px; /* Slightly reduced padding to prevent overflow */
+    padding: 30px 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     border-top: 6px solid var(--primary-color);
@@ -223,7 +236,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* Ensures all cards in a row are exactly the same height */
+    height: 100%;
 }
 
 .card:hover {
@@ -231,11 +244,7 @@ body {
     box-shadow: 0 12px 20px rgba(0,0,0,0.12);
 }
 
-.card-icon {
-    font-size: 3.5rem;
-    margin-bottom: 15px;
-}
-
+.card-icon { font-size: 3.5rem; margin-bottom: 15px; }
 .card h2 { margin-bottom: 10px; font-size: 1.4rem; color: var(--primary-color); }
 .card p { margin-bottom: 20px; flex-grow: 1; font-size: 0.95rem; }
 
@@ -243,12 +252,12 @@ body {
     display: inline-block;
     padding: 12px 20px;
     background-color: var(--primary-light);
-    color: #fff;
+    color: var(--btn-text); /* Now inherits properly for dark mode */
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
     transition: background-color var(--transition-speed);
-    width: 100%; /* Makes button stretch full width of card for easier thumb-tapping */
+    width: 100%;
 }
 
 .btn-external:hover { background-color: var(--primary-color); }
@@ -371,13 +380,24 @@ input:focus, select:focus, textarea:focus {
 /* =====================================================================
    9. DEEP MOBILE RESPONSIVENESS (All Screen Sizes)
    ===================================================================== */
-/* Standard Tablets and Large Phones */
+/* Standard Tablets */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+}
+
 @media (max-width: 768px) {
+    /* Sleek Mobile Utility Bar */
     .utility-container { 
         flex-direction: column; 
-        align-items: center; 
-        text-align: center;
+        gap: 12px; 
     }
+    .translate-wrapper, .accessibility-tools { 
+        width: 100%; 
+        justify-content: center; 
+    }
+    
     .main-nav { flex-direction: column; gap: 15px; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
     
@@ -385,57 +405,48 @@ input:focus, select:focus, textarea:focus {
     .hero-content p { font-size: 1.1rem; }
     .video-guide { margin-top: 20px; }
     .btn-next { width: 100%; }
-    
-    /* Center modal vertically on smaller screens */
-    .modal-content { max-height: 90vh; overflow-y: auto; }
 }
 
-/* Old, Small Phones (e.g., iPhone SE, Galaxy Fold Outer Screen - 320px) */
-@media (max-width: 480px) {
-    .utility-bar { padding: 10px 2%; }
+/* Old, Small Phones (e.g., iPhone SE) */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 column for phones */
+        padding: 30px 5%;
+        gap: 20px;
+    }
+
+    /* THE UTILITY BAR FIX: Hides text, keeps buttons horizontal */
+    .util-label { display: none; } /* Removes clutter! */
     
     .accessibility-tools { 
-        flex-direction: column; /* Stacks zoom and contrast buttons */
-        width: 100%;
-        gap: 15px;
+        flex-direction: row; /* Forces them to stay side-by-side */
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .zoom-buttons {
         display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 5px;
+        gap: 8px;
     }
 
     .btn-util {
-        padding: 6px 12px;
-        font-size: 0.85rem; /* Shrink text slightly so buttons fit */
+        padding: 8px 16px; /* Larger tap targets for fingers */
+        font-size: 0.95rem; 
     }
 
     .nav-logo { font-size: 1.5rem; }
     .nav-links a { font-size: 1rem; }
     
     .hero-content h1 { font-size: 1.8rem; }
-    .hero-content p { font-size: 0.95rem; }
-    
-    .grid-container {
-        padding: 30px 5%;
-        gap: 20px;
-    }
-    
     .card { padding: 20px 15px; }
     .card-icon { font-size: 2.8rem; }
     .card h2 { font-size: 1.25rem; }
     
-    .btn-next {
-        font-size: 1.1rem;
-        padding: 15px 20px;
-    }
-
+    .btn-next { font-size: 1.1rem; padding: 15px 20px; }
     .site-footer { padding: 30px 5% 15px; }
     .helpline-link { font-size: 1.5rem; }
 }
-
 /* =====================================================================
    10. GRAND FOOTER
    ===================================================================== */
@@ -562,4 +573,47 @@ input:focus, select:focus, textarea:focus {
         padding-left: 0;
         transform: scale(1.05); /* Change slide to scale for mobile touch */
     }
+}
+
+/* =====================================================================
+   11. SYSTEM BUG FIXES & OVERRIDES
+   ===================================================================== */
+
+/* FIX: Prevent Google Translate from pushing the website down */
+body {
+    top: 0 !important;
+}
+
+/* FIX: Hide the ugly Google Translate top bar frame completely */
+.skiptranslate iframe {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* FIX: Hide the "Powered by Google" text to keep the utility bar clean */
+.goog-logo-link {
+    display: none !important;
+}
+.goog-te-gadget {
+    color: transparent !important;
+    font-size: 0px !important;
+}
+
+/* FIX: Ensure the dropdown text matches your website theme */
+.goog-te-gadget .goog-te-combo {
+    color: var(--primary-color) !important;
+    font-family: inherit !important;
+    font-weight: bold;
+    font-size: 14px !important;
+    margin: 0;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid var(--primary-color);
+}
+
+/* High Contrast override for the translate dropdown */
+[data-theme="high-contrast"] .goog-te-gadget .goog-te-combo {
+    background-color: #000 !important;
+    color: #ff0 !important;
+    border: 2px solid #ff0 !important;
 }
