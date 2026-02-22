@@ -29,64 +29,73 @@
 
 
 /* =====================================================================
-   STRICT HIGH CONTRAST MODE OVERRIDES
+   STRICT HIGH CONTRAST MODE OVERRIDES (Bug-Free)
    ===================================================================== */
 [data-theme="high-contrast"] {
     --primary-color: #000000 !important;
-    --primary-light: #222222 !important;
+    --primary-light: #111111 !important;
     --secondary-color: #000000 !important;
     --text-color: #ffff00 !important; /* Pure Yellow */
     --card-bg: #111111 !important;
-    --btn-bg: #ffff00 !important;
-    --btn-text: #000000 !important;
+    --btn-bg: #ffff00 !important; /* Pure Yellow Background for Buttons */
+    --btn-text: #000000 !important; /* Pure Black Text for Buttons */
 }
 
-/* NUCLEAR OVERRIDE: Forces ALL text to be yellow, overriding any hardcoded CSS */
-[data-theme="high-contrast"] *,
+/* 1. Force the main body and layout containers to Black */
+[data-theme="high-contrast"] body,
+[data-theme="high-contrast"] .site-footer,
+[data-theme="high-contrast"] .main-nav,
+[data-theme="high-contrast"] .hero-section,
+[data-theme="high-contrast"] .utility-bar,
+[data-theme="high-contrast"] .card,
+[data-theme="high-contrast"] .modal-content {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border-color: var(--text-color) !important;
+}
+
+/* 2. Intelligently target text elements to turn Yellow (Without touching buttons) */
 [data-theme="high-contrast"] h1,
 [data-theme="high-contrast"] h2,
 [data-theme="high-contrast"] h3,
 [data-theme="high-contrast"] p,
-[data-theme="high-contrast"] a,
 [data-theme="high-contrast"] li,
-[data-theme="high-contrast"] span,
-[data-theme="high-contrast"] .footer-section p,
-[data-theme="high-contrast"] .footer-section h3,
-[data-theme="high-contrast"] .hero-content p,
-[data-theme="high-contrast"] .nav-logo {
+[data-theme="high-contrast"] span:not(.close-btn),
+[data-theme="high-contrast"] label,
+[data-theme="high-contrast"] .nav-logo,
+[data-theme="high-contrast"] a:not([class*="btn"]) {
     color: var(--text-color) !important;
 }
 
-/* Force backgrounds to stay pure black in complex sections */
-[data-theme="high-contrast"] .site-footer,
-[data-theme="high-contrast"] .main-nav,
-[data-theme="high-contrast"] .hero-section {
-    background: #000000 !important;
-    border-color: var(--text-color) !important;
-}
-
-/* Force inputs and forms to comply */
+/* 3. Force inputs and forms to comply */
 [data-theme="high-contrast"] input,
 [data-theme="high-contrast"] select,
-[data-theme="high-contrast"] textarea,
-[data-theme="high-contrast"] .modal-content {
+[data-theme="high-contrast"] textarea {
     background-color: #000000 !important;
     color: var(--text-color) !important;
-    border-color: var(--text-color) !important;
+    border: 1px solid var(--text-color) !important;
 }
 
-/* STRICT BUTTON OVERRIDE FOR HIGH CONTRAST */
+/* 4. PROTECT THE BRIGHT SIDE: Buttons must be Yellow with BLACK text */
+[data-theme="high-contrast"] button,
 [data-theme="high-contrast"] .btn-external,
 [data-theme="high-contrast"] .btn-submit,
 [data-theme="high-contrast"] .btn-next,
 [data-theme="high-contrast"] .btn-nav,
+[data-theme="high-contrast"] .btn-util,
 [data-theme="high-contrast"] .btn-footer-nav {
+    background: var(--btn-bg) !important;
     background-color: var(--btn-bg) !important;
-    color: var(--btn-text) !important; /* Black text on yellow buttons */
-    border: 2px solid #ffff00 !important;
+    color: var(--btn-text) !important; /* Forces Black Text */
+    border: 2px solid var(--btn-bg) !important;
     font-weight: 900 !important;
 }
 
+/* 5. Ultimate safeguard: Any text sitting inside a button is forced to Black */
+[data-theme="high-contrast"] button *,
+[data-theme="high-contrast"] [class*="btn"] * {
+    color: var(--btn-text) !important;
+}
 
 /* =====================================================================
    2. GLOBAL RESET & TYPOGRAPHY
