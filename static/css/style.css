@@ -25,6 +25,56 @@
     --btn-text: #000000;
 }
 
+
+
+
+/* =====================================================================
+   STRICT HIGH CONTRAST MODE OVERRIDES
+   ===================================================================== */
+[data-theme="high-contrast"] {
+    --primary-color: #000000 !important;
+    --primary-light: #222222 !important;
+    --secondary-color: #000000 !important;
+    --text-color: #ffff00 !important; /* Pure Yellow */
+    --card-bg: #111111 !important;
+    --btn-bg: #ffff00 !important;
+    --btn-text: #000000 !important;
+}
+
+/* NUCLEAR OVERRIDE: Forces ALL text to be yellow, overriding any hardcoded CSS */
+[data-theme="high-contrast"] *,
+[data-theme="high-contrast"] h1,
+[data-theme="high-contrast"] h2,
+[data-theme="high-contrast"] h3,
+[data-theme="high-contrast"] p,
+[data-theme="high-contrast"] a,
+[data-theme="high-contrast"] li,
+[data-theme="high-contrast"] span,
+[data-theme="high-contrast"] .footer-section p,
+[data-theme="high-contrast"] .footer-section h3,
+[data-theme="high-contrast"] .hero-content p,
+[data-theme="high-contrast"] .nav-logo {
+    color: var(--text-color) !important;
+}
+
+/* Force backgrounds to stay pure black in complex sections */
+[data-theme="high-contrast"] .site-footer,
+[data-theme="high-contrast"] .main-nav,
+[data-theme="high-contrast"] .hero-section {
+    background: #000000 !important;
+    border-color: var(--text-color) !important;
+}
+
+/* Force inputs and forms to comply */
+[data-theme="high-contrast"] input,
+[data-theme="high-contrast"] select,
+[data-theme="high-contrast"] textarea,
+[data-theme="high-contrast"] .modal-content {
+    background-color: #000000 !important;
+    color: var(--text-color) !important;
+    border-color: var(--text-color) !important;
+}
+
 /* STRICT BUTTON OVERRIDE FOR HIGH CONTRAST */
 [data-theme="high-contrast"] .btn-external,
 [data-theme="high-contrast"] .btn-submit,
@@ -32,8 +82,8 @@
 [data-theme="high-contrast"] .btn-nav,
 [data-theme="high-contrast"] .btn-footer-nav {
     background-color: var(--btn-bg) !important;
-    color: var(--btn-text) !important;
-    border: 2px solid #000 !important;
+    color: var(--btn-text) !important; /* Black text on yellow buttons */
+    border: 2px solid #ffff00 !important;
     font-weight: 900 !important;
 }
 
@@ -284,7 +334,7 @@ body {
 
 .btn-next {
     background-color: var(--btn-bg);
-    color: #000;
+    color: white;
     font-size: 1.3rem;
     font-weight: 800;
     padding: 18px 40px;

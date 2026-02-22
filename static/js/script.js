@@ -29,15 +29,21 @@ class UIController {
     }
 
     // Adjusts font size dynamically without breaking layout
+   // Adjusts font size dynamically and scales the entire website
     changeFontSize(step) {
         if (step === 0) {
-            this.currentFontSize = 18; 
+            this.currentFontSize = 18; // Reset to default
         } else {
+            // Limit how big/small text can get to prevent UI breakage
             let newSize = this.currentFontSize + (step * 2);
-            if (newSize >= 14 && newSize <= 26) {
+            if (newSize >= 14 && newSize <= 28) {
                 this.currentFontSize = newSize;
             }
         }
+        
+        // BUG FIX: Directly update the root HTML font-size. 
+        // This forces all 'rem' units across the entire website to scale instantly!
+        document.documentElement.style.fontSize = `${this.currentFontSize}px`;
         document.documentElement.style.setProperty('--base-font-size', `${this.currentFontSize}px`);
     }
 
