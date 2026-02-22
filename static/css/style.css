@@ -676,3 +676,141 @@ body {
     color: #ff0 !important;
     border: 2px solid #ff0 !important;
 }
+
+/* =====================================================================
+   12. INNER PAGE STYLES (Article Layouts)
+   ===================================================================== */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0a2d6b 100%);
+    color: white;
+    padding: 60px 5%;
+    text-align: center;
+    border-bottom: 5px solid var(--btn-bg);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.article-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.article-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 6px solid var(--primary-color);
+}
+
+.article-card h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.article-card p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.article-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.article-list li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.article-list li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.document-list li::before {
+    content: '📄';
+}
+
+/* Ensure High Contrast overrides apply to the new inner page elements */
+[data-theme="high-contrast"] .page-header { background: #000 !important; border-bottom: 5px solid #ff0 !important; }
+[data-theme="high-contrast"] .article-card { background: #111 !important; border-color: #ff0 !important; }
+[data-theme="high-contrast"] .article-card h2 { border-color: #333 !important; }
+
+
+/* =====================================================================
+   13. INTRODUCTION & IMAGE STYLING
+   ===================================================================== */
+.intro-section {
+    background: var(--card-bg);
+    padding: 60px 5%;
+    border-bottom: 1px solid #c8d6e5;
+}
+
+/* High Contrast Override for Intro Section */
+[data-theme="high-contrast"] .intro-section {
+    background: #000 !important;
+    border-bottom: 2px solid #ff0 !important;
+}
+
+.intro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.intro-text { flex: 1; }
+
+.intro-text h2 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.intro-text p {
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.intro-image {
+    flex: 1;
+    text-align: center;
+}
+
+/* Global Image Styling - Keeps them beautiful and responsive */
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 4px solid var(--card-bg);
+    object-fit: cover;
+}
+
+[data-theme="high-contrast"] .responsive-img {
+    border-color: var(--text-color) !important;
+}
+
+/* Mobile responsive for intro */
+@media (max-width: 768px) {
+    .intro-container {
+        flex-direction: column-reverse; /* Puts image above text on phones */
+    }
+}
