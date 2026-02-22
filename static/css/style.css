@@ -1,22 +1,25 @@
 /* =====================================================================
-   1. CSS VARIABLES (For easy theme management & scalability)
+   1. CSS VARIABLES (Premium & Accessible Theme)
    ===================================================================== */
-   :root {
-    --primary-color: #003366; /* Deep Navy Blue for trust */
-    --secondary-color: #f4f7f6; /* Soft cream background */
-    --text-color: #222222;
+:root {
+    --primary-color: #0b3d91; /* Richer, deeper Navy Blue for a grand feel */
+    --primary-light: #1e5bbd; /* Lighter accent for gradients */
+    --secondary-color: #f4f7f6; /* Soft cream/gray background to reduce eye strain */
+    --text-color: #2c3e50;
     --card-bg: #ffffff;
-    --btn-bg: #28a745; /* Green for clear action */
+    --btn-bg: #27ae60; /* Premium vibrant green */
     --btn-text: #ffffff;
-    --border-radius: 8px;
-    --base-font-size: 18px; /* Accessible default size */
+    --border-radius: 12px; /* Softer, friendlier corners */
+    --base-font-size: 18px; 
+    --transition-speed: 0.3s;
 }
 
-/* High Contrast Mode Variables (Triggered via JS) */
+/* High Contrast Mode Variables */
 [data-theme="high-contrast"] {
     --primary-color: #000000;
+    --primary-light: #222222;
     --secondary-color: #000000;
-    --text-color: #ffff00; /* Yellow on black is highest contrast */
+    --text-color: #ffff00;
     --card-bg: #111111;
     --btn-bg: #ffff00;
     --btn-text: #000000;
@@ -31,217 +34,25 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     font-size: var(--base-font-size);
     background-color: var(--secondary-color);
     color: var(--text-color);
-    line-height: 1.6;
-    transition: all 0.3s ease;
+    line-height: 1.7;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 /* =====================================================================
-   3. HEADER & ACCESSIBILITY BAR
-   ===================================================================== */
-.global-header {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    padding: 1rem 5%;
-    text-align: center;
-}
-
-.accessibility-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.text-controls button {
-    background: #ffffff;
-    color: var(--primary-color);
-    border: none;
-    padding: 5px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-}
-
-.text-controls button:hover, .text-controls button:focus {
-    background: var(--btn-bg);
-    color: var(--btn-text);
-    outline: 2px solid #ffffff;
-}
-
-/* =====================================================================
-   4. GRID LAYOUT & CARDS (Responsive & Scalable)
-   ===================================================================== */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 30px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.card h2 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-}
-
-.btn-external {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    text-decoration: none;
-    border-radius: var(--border-radius);
-    font-weight: bold;
-}
-
-/* =====================================================================
-   5. FORM & VIDEO SECTIONS
-   ===================================================================== */
-.video-guide {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 5%;
-}
-
-/* New clean CSS for the video player */
-.primary-video {
-    width: 100%;
-    max-height: 500px;
-    background-color: #000000;
-    border-radius: var(--border-radius);
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* ... keep your existing feedback-section CSS below this ... */
-
-form { display: flex; flex-direction: column; gap: 15px; }
-
-label { font-weight: bold; }
-
-input, select, textarea {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-}
-
-.btn-submit {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
-
-#formStatus { margin-top: 15px; font-weight: bold; text-align: center; }
-.status-success { color: green; }
-.status-error { color: red; }
-
-/* =====================================================================
-   6. NAVIGATION BAR
-   ===================================================================== */
-.main-nav {
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-.nav-logo { font-size: 1.5rem; font-weight: bold; }
-.nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
-.nav-links a { color: white; text-decoration: none; font-weight: bold; font-size: 1.1rem; }
-.nav-links a:hover { text-decoration: underline; color: var(--btn-bg); }
-
-.btn-nav {
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* Page Flow (Next Button) */
-.page-flow-nav { text-align: center; margin: 30px 0 50px 0; }
-.btn-next {
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.2rem;
-    padding: 15px 30px;
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-}
-
-/* =====================================================================
-   7. MODAL (POPUP FORM)
-   ===================================================================== */
-.modal-overlay {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    border: 3px solid var(--primary-color);
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px; right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: red;
-}
-
-/* =====================================================================
-   8. BEAUTIFUL UTILITY & ACCESSIBILITY BAR
+   3. UTILITY & ACCESSIBILITY BAR
    ===================================================================== */
 .utility-bar {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+    background-color: #e9ecef;
+    border-bottom: 1px solid #d1d8e0;
     padding: 10px 5%;
 }
 
@@ -256,8 +67,8 @@ input, select, textarea {
 }
 
 .util-label {
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--primary-color);
     margin-right: 8px;
 }
@@ -265,7 +76,7 @@ input, select, textarea {
 .translate-wrapper, .accessibility-tools {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 /* Beautiful Pill Buttons */
@@ -273,49 +84,482 @@ input, select, textarea {
     background: white;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 6px 14px;
-    border-radius: 50px; /* Pill shape */
+    padding: 5px 16px;
+    border-radius: 50px; 
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .btn-util:hover {
     background-color: var(--primary-color);
     color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .btn-contrast {
-    background-color: #333;
+    background-color: #2c3e50;
     color: #fff;
-    border-color: #000;
+    border-color: #1a252f;
 }
 
-.btn-contrast:hover {
-    background-color: #000;
+.btn-contrast:hover { background-color: #000; }
+
+/* Google Translate UI Fix */
+#google_translate_element select {
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-color);
+    font-size: 0.9rem;
+    outline: none;
 }
 
-/* Google Translate Beauty Fix */
-#google_translate_element {
+/* =====================================================================
+   4. NAVIGATION BAR (Grand & Sticky)
+   ===================================================================== */
+.main-nav {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-logo { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    letter-spacing: 1px;
+}
+
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 25px; 
+    align-items: center; 
+}
+
+.nav-links a { 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 1.1rem; 
+    transition: opacity var(--transition-speed);
+}
+
+.nav-links a:hover { opacity: 0.8; }
+
+.btn-nav {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform var(--transition-speed);
+}
+
+.btn-nav:hover { transform: scale(1.05); }
+
+/* =====================================================================
+   5. HERO SECTION (The "Grand" Welcome)
+   ===================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    padding: 60px 5%;
+    text-align: center;
+    border-bottom: 1px solid #c8d6e5;
+}
+
+[data-theme="high-contrast"] .hero-section {
+    background: #000;
+    border-bottom: 2px solid #fff;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-color);
+}
+
+/* =====================================================================
+   6. GRID LAYOUT & BEAUTIFUL CARDS
+   ===================================================================== */
+.grid-container {
+    display: grid;
+    /* CHANGED: minmax lowered from 280px to 240px to fit old/small phones */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    padding: 50px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px 20px; /* Slightly reduced padding to prevent overflow */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border-top: 6px solid var(--primary-color);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensures all cards in a row are exactly the same height */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.card h2 { margin-bottom: 10px; font-size: 1.4rem; color: var(--primary-color); }
+.card p { margin-bottom: 20px; flex-grow: 1; font-size: 0.95rem; }
+
+.btn-external {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--primary-light);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color var(--transition-speed);
+    width: 100%; /* Makes button stretch full width of card for easier thumb-tapping */
+}
+
+.btn-external:hover { background-color: var(--primary-color); }
+/* =====================================================================
+   7. MEDIA SECTION & PAGE FLOW
+   ===================================================================== */
+.video-guide {
+    max-width: 800px;
+    margin: -30px auto 20px auto; /* Pulls video slightly into hero section */
+    padding: 0 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.video-player {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    background: #000;
+    border: 4px solid white;
+}
+
+.page-flow-nav { text-align: center; margin: 20px 0 60px 0; }
+
+.btn-next {
+    background-color: var(--btn-bg);
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 800;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
+    transition: all var(--transition-speed);
+}
+
+.btn-next:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.4);
+}
+
+/* =====================================================================
+   8. MODAL (POPUP FORM)
+   ===================================================================== */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    -webkit-backdrop-filter: blur(4px); /* Premium glass effect - Safari support */
+    backdrop-filter: blur(4px); /* Premium glass effect */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.modal-content h2 { margin-bottom: 20px; color: var(--primary-color); }
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 25px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #e74c3c;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.close-btn:hover { transform: scale(1.2); }
+
+form { display: flex; flex-direction: column; gap: 15px; }
+label { font-weight: bold; color: var(--text-color); }
+
+input, select, textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color var(--transition-speed);
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.1);
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.btn-submit:hover { background-color: var(--primary-light); }
+
+#formStatus { margin-top: 15px; font-weight: bold; text-align: center; }
+.status-success { color: #27ae60; }
+.status-error { color: #e74c3c; }
+
+/* =====================================================================
+   9. DEEP MOBILE RESPONSIVENESS (All Screen Sizes)
+   ===================================================================== */
+/* Standard Tablets and Large Phones */
+@media (max-width: 768px) {
+    .utility-container { 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;
+    }
+    .main-nav { flex-direction: column; gap: 15px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content p { font-size: 1.1rem; }
+    .video-guide { margin-top: 20px; }
+    .btn-next { width: 100%; }
+    
+    /* Center modal vertically on smaller screens */
+    .modal-content { max-height: 90vh; overflow-y: auto; }
+}
+
+/* Old, Small Phones (e.g., iPhone SE, Galaxy Fold Outer Screen - 320px) */
+@media (max-width: 480px) {
+    .utility-bar { padding: 10px 2%; }
+    
+    .accessibility-tools { 
+        flex-direction: column; /* Stacks zoom and contrast buttons */
+        width: 100%;
+        gap: 15px;
+    }
+
+    .zoom-buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .btn-util {
+        padding: 6px 12px;
+        font-size: 0.85rem; /* Shrink text slightly so buttons fit */
+    }
+
+    .nav-logo { font-size: 1.5rem; }
+    .nav-links a { font-size: 1rem; }
+    
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content p { font-size: 0.95rem; }
+    
+    .grid-container {
+        padding: 30px 5%;
+        gap: 20px;
+    }
+    
+    .card { padding: 20px 15px; }
+    .card-icon { font-size: 2.8rem; }
+    .card h2 { font-size: 1.25rem; }
+    
+    .btn-next {
+        font-size: 1.1rem;
+        padding: 15px 20px;
+    }
+
+    .site-footer { padding: 30px 5% 15px; }
+    .helpline-link { font-size: 1.5rem; }
+}
+
+/* =====================================================================
+   10. GRAND FOOTER
+   ===================================================================== */
+.site-footer {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #062863 100%);
+    color: #ffffff;
+    padding: 60px 5% 20px;
+    margin-top: 60px;
+    border-top: 5px solid var(--btn-bg); /* Premium green accent line */
+}
+
+[data-theme="high-contrast"] .site-footer {
+    background: #000000;
+    border-top: 5px solid #ffff00;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Beautiful underline effect for footer headings */
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--btn-bg);
+}
+
+.footer-section p {
+    color: #d1d8e0;
+    line-height: 1.8;
+}
+
+.footer-section.links ul {
+    list-style: none;
+}
+
+.footer-section.links li {
+    margin-bottom: 12px;
+}
+
+.footer-section.links a {
+    color: #d1d8e0;
+    text-decoration: none;
+    transition: color var(--transition-speed), padding-left var(--transition-speed);
     display: inline-block;
 }
 
-.goog-te-gadget {
-    font-family: inherit !important;
+/* Elegant slide-right effect on hover */
+.footer-section.links a:hover {
+    color: var(--btn-bg);
+    padding-left: 8px; 
 }
 
-.goog-te-gadget-simple {
-    border: 2px solid var(--primary-color) !important;
-    border-radius: 8px !important;
-    padding: 4px 8px !important;
+.helpline-link {
+    color: var(--btn-bg);
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: transform var(--transition-speed);
 }
 
+.helpline-link:hover {
+    transform: scale(1.1);
+}
 
+.btn-footer-nav {
+    background-color: transparent;
+    color: var(--btn-bg);
+    border: 2px solid var(--btn-bg);
+    padding: 10px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: all var(--transition-speed);
+}
 
-/* Card Icons */
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
+.btn-footer-nav:hover {
+    background-color: var(--btn-bg);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.4);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a4b0be;
+    font-size: 0.95rem;
+}
+
+/* Mobile adjustments for the footer */
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 40px 5% 20px;
+    }
+    .footer-section {
+        text-align: center;
+    }
+    .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-section.links a:hover {
+        padding-left: 0;
+        transform: scale(1.05); /* Change slide to scale for mobile touch */
+    }
 }
