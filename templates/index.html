@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Senior Citizen Rights Portal | Pension, Health & Mobility</title>
+    <meta name="description" content="A comprehensive guide to senior citizen rights in India. Learn about IGNOAPS old age pensions, Ayushman Bharat medical benefits, and transport concessions.">
+    <meta name="keywords" content="Senior Citizen Rights, Old Age Pension India, IGNOAPS, Ayushman Bharat seniors, Railway concession senior citizen, 2007 Maintenance Act">
+    <meta name="author" content="Community Engagement Project">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.1">
+</head>
+<body>
+    
+    <div class="utility-bar" aria-label="Accessibility Tools">
+        <div class="utility-container">
+            <div class="translate-wrapper">
+                <span class="util-label">🌐 Select Language:</span>
+                <div id="google_translate_element"></div>
+            </div>
+
+            <div class="accessibility-tools">
+                <span class="util-label">🔍 Text Size:</span>
+                <div class="zoom-buttons">
+                    <button class="btn-util" onclick="uiController.changeFontSize(-1)" aria-label="Zoom Out">A -</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(0)" aria-label="Reset Zoom">A</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(1)" aria-label="Zoom In">A +</button>
+                </div>
+                <button class="btn-util btn-contrast" onclick="uiController.toggleHighContrast()" aria-label="Toggle High Contrast">
+                    🌓 Contrast
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-logo">ElderRights</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pension">Pension</a></li>
+            <li><a href="/health">Health</a></li>
+            <li><a href="/transport">Transport</a></li>
+            <li><a href="/legal">Legal</a></li>
+            <li><button onclick="uiController.openModal()" class="btn-nav">Ask a Question</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>ElderRights Portal</h1>
+            <p>Empowering elders with verified knowledge on financial, health, and mobility rights.</p>
+        </div>
+    </header>
+
+    <section class="video-guide" aria-label="Video Introduction">
+        <video class="video-player" width="100%" controls preload="none">
+            <source src="{{ url_for('static', filename='videos/Senior_Citizen_s_Guide.mp4') }}" type="video/mp4">
+            <p>Your browser does not support the video player. 
+               <a href="{{ url_for('static', filename='videos/Senior_Citizen_s_Guide.mp4') }}" target="_blank">Click here to view.</a>
+            </p>
+        </video>
+    </section>
+
+    <main class="grid-container" id="main-content">
+        <article class="card module-pension">
+            <div class="card-icon">💰</div>
+            <h2>Economic Rights</h2>
+            <p><strong>IGNOAPS:</strong> Monthly assistance for citizens aged 60+.</p>
+            <a href="https://www.myscheme.gov.in/schemes/ignoaps" target="_blank" rel="noopener noreferrer" class="btn-external">Official Scheme Details</a>
+        </article>
+
+        <article class="card module-health">
+            <div class="card-icon">🏥</div>
+            <h2>Health Benefits</h2>
+            <p><strong>Ayushman Bharat:</strong> Free health insurance coverage of ₹5 Lakh for seniors 70+.</p>
+            <a href="https://www.myscheme.gov.in/schemes/ab-pmjay" target="_blank" rel="noopener noreferrer" class="btn-external">Official Health Portal</a>
+        </article>
+
+        <article class="card module-transport">
+            <div class="card-icon">🚆</div>
+            <h2>Mobility</h2>
+            <p>Details on Railways and State Bus (MSRTC) concessions for safe travel.</p>
+            <a href="https://www.irctc.co.in/" target="_blank" rel="noopener noreferrer" class="btn-external">IRCTC Booking</a>
+        </article>
+
+        <article class="card module-legal">
+            <div class="card-icon">⚖️</div>
+            <h2>Legal Protection</h2>
+            <p>Understanding the <em>Maintenance and Welfare of Parents and Senior Citizens Act, 2007</em>.</p>
+            <a href="https://socialjustice.gov.in/common/76669" target="_blank" rel="noopener noreferrer" class="btn-external">Ministry Documentation</a>
+        </article>
+    </main>
+
+    <div class="page-flow-nav">
+        <button class="btn-next" onclick="location.href='/pension'">Start Guide: Economic Rights ➔</button>
+    </div>
+
+    <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
+            <h2>Ask a Question</h2>
+            <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
+                <label for="userName">Name (Optional):</label>
+                <input type="text" id="userName" name="userName" placeholder="Your Name">
+
+                <label for="queryTopic">Topic *</label>
+                <select id="queryTopic" name="queryTopic" required>
+                    <option value="">--Select Topic--</option>
+                    <option value="Pension">Pension</option>
+                    <option value="Health">Health</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Legal">Legal</option>
+                </select>
+
+                <label for="userMessage">Message *</label>
+                <textarea id="userMessage" name="userMessage" placeholder="How can we help you?" required></textarea>
+
+                <button type="submit" class="btn-submit">Submit Query</button>
+                <div id="formStatus" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,as,or,sa,mai,sd,ne,doi,gom,mni',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
