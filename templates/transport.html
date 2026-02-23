@@ -1,151 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mobility & Transport | ElderRights Portal</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.2">
-</head>
-<body>
-    
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}?v=1.2"
+    />
+  </head>
+  <body>
     <div class="utility-bar" aria-label="Accessibility Tools">
-        <div class="utility-container">
-            <div class="translate-wrapper">
-                <span class="util-label">🌐 Select Language:</span>
-                <div id="google_translate_element"></div>
-            </div>
-            <div class="accessibility-tools">
-                <span class="util-label">🔍 Text Size:</span>
-                <div class="zoom-buttons">
-                    <button class="btn-util" onclick="uiController.changeFontSize(-1)" aria-label="Zoom Out">A -</button>
-                    <button class="btn-util" onclick="uiController.changeFontSize(0)" aria-label="Reset Zoom">A</button>
-                    <button class="btn-util" onclick="uiController.changeFontSize(1)" aria-label="Zoom In">A +</button>
-                </div>
-                <button class="btn-util btn-contrast" onclick="uiController.toggleHighContrast()" aria-label="Toggle High Contrast">🌓 Contrast</button>
-            </div>
+      <div class="utility-container">
+        <div class="translate-wrapper">
+          <span class="util-label">🌐 Select Language:</span>
+          <div id="google_translate_element"></div>
         </div>
+        <div class="accessibility-tools">
+          <span class="util-label">🔍 Text Size:</span>
+          <div class="zoom-buttons">
+            <button
+              class="btn-util"
+              onclick="uiController.changeFontSize(-1)"
+              aria-label="Zoom Out"
+            >
+              A -
+            </button>
+            <button
+              class="btn-util"
+              onclick="uiController.changeFontSize(0)"
+              aria-label="Reset Zoom"
+            >
+              A
+            </button>
+            <button
+              class="btn-util"
+              onclick="uiController.changeFontSize(1)"
+              aria-label="Zoom In"
+            >
+              A +
+            </button>
+          </div>
+          <button
+            class="btn-util btn-contrast"
+            onclick="uiController.toggleHighContrast()"
+            aria-label="Toggle High Contrast"
+          >
+            🌓 Contrast
+          </button>
+        </div>
+      </div>
     </div>
 
     <nav class="main-nav">
-        <div class="nav-logo">ElderRights</div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/pension">Pension</a></li>
-            <li><a href="/health">Health</a></li>
-            <li><a href="/transport">Transport</a></li>
-            <li><a href="/legal">Legal</a></li>
-            <li><button onclick="uiController.openModal()" class="btn-nav">Ask a Question</button></li>
-        </ul>
+      <div class="nav-logo">ElderRights</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pension">Pension</a></li>
+        <li><a href="/health">Health</a></li>
+        <li><a href="/transport">Transport</a></li>
+        <li><a href="/legal">Legal</a></li>
+        <li>
+          <button onclick="uiController.openModal()" class="btn-nav">
+            Ask a Question
+          </button>
+        </li>
+      </ul>
     </nav>
 
     <header class="page-header">
-        <h1>Mobility & Transport Concessions</h1>
-        <p>Ensuring that senior citizens are not isolated due to mobility issues or financial constraints.</p>
+      <h1>Mobility & Transport Facilities</h1>
+      <p>
+        Ensuring that senior citizens are not isolated due to mobility issues or
+        financial constraints.
+      </p>
     </header>
 
     <main class="article-container" id="main-content">
-        
-        <div style="text-align: center; margin-bottom: 10px;">
-            <img src="{{ url_for('static', filename='images/transport.jpg') }}" alt="Senior Citizens Travelling Safely" class="responsive-img" style="max-height: 400px; width: 100%;">
-        </div>
+      <div style="text-align: center; margin-bottom: 10px">
+        <img
+          src="{{ url_for('static', filename='images/transport.jpg') }}"
+          alt="Senior Citizens Travelling Safely"
+          class="responsive-img"
+          style="max-height: 400px; width: 100%"
+        />
+      </div>
 
-        <article class="article-card">
-            <h2>The Right to Stay Connected</h2>
-            <p>Easy and affordable transportation helps elders remain socially active and connected to society. Whether it is visiting family, going to the hospital, or fulfilling daily needs, mobility is a cornerstone of an independent life.</p>
-            <p>The Government of India and various state authorities provide specific concessions to help elders plan their travel safely and economically.</p>
-        </article>
+      <article class="article-card">
+        <h2>Indian Railways Facilities</h2>
+        <p>
+          <strong style="color: #e74c3c">Important Update:</strong> Please note
+          that fare discounts on railway tickets for senior citizens have been
+          suspended since the COVID-19 pandemic and are currently not active.
+          However, the Railways still provide critical facilities for seniors
+          (Men aged 60+, Women aged 58+):
+        </p>
+        <ul class="article-list">
+          <li>
+            <strong>Lower Berth Quota:</strong> Automatic preference for lower
+            berths is given to senior citizens traveling alone or with another
+            senior citizen.
+          </li>
+          <li>
+            <strong>Wheelchair Assistance:</strong> Battery Operated Vehicles
+            (BOVs) and wheelchair facilities are available at major railway
+            stations.
+          </li>
+          <li>
+            <strong>Separate Counters:</strong> Dedicated reservation counters
+            for senior citizens at major passenger reservation centers.
+          </li>
+        </ul>
+      </article>
 
-        <article class="article-card">
-            <h2>Indian Railways Facilities</h2>
-            <p>The Indian Railways provides dedicated facilities to make long-distance travel comfortable for senior citizens (Men aged 60+, Women aged 58+):</p>
-            <ul class="article-list">
-                <li><strong>Lower Berth Quota:</strong> Automatic preference for lower berths is given to senior citizens traveling alone or with another senior citizen.</li>
-                <li><strong>Wheelchair Assistance:</strong> Battery Operated Vehicles (BOVs) and wheelchair facilities are available at major railway stations.</li>
-                <li><strong>Separate Counters:</strong> Dedicated reservation counters for senior citizens at major passenger reservation centers.</li>
-            </ul>
-        </article>
+      <!-- <article class="article-card">
+        <h2>Indian Railways Facilities</h2>
+        <p>
+          The Indian Railways provides dedicated facilities to make
+          long-distance travel comfortable for senior citizens (Men aged 60+,
+          Women aged 58+):
+        </p>
+        <ul class="article-list">
+          <li>
+            <strong>Lower Berth Quota:</strong> Automatic preference for lower
+            berths is given to senior citizens traveling alone or with another
+            senior citizen.
+          </li>
+          <li>
+            <strong>Wheelchair Assistance:</strong> Battery Operated Vehicles
+            (BOVs) and wheelchair facilities are available at major railway
+            stations.
+          </li>
+          <li>
+            <strong>Separate Counters:</strong> Dedicated reservation counters
+            for senior citizens at major passenger reservation centers.
+          </li>
+        </ul>
+      </article> -->
 
-        <article class="article-card">
-            <h2>State Bus Transport (e.g., MSRTC)</h2>
-            <p>For daily and inter-city commutes, state governments offer vital benefits:</p>
-            <ul class="article-list">
-                <li><strong>Fare Concessions:</strong> Many state transport corporations, such as the Maharashtra State Road Transport Corporation (MSRTC), provide significant ticket discounts (up to 50% or more) for citizens aged 65 and above upon showing a valid ID.</li>
-                <li><strong>Reserved Seating:</strong> Specific seats are strictly reserved for senior citizens in local city buses (like BEST in Mumbai) to prevent them from having to stand during travel.</li>
-            </ul>
-        </article>
+      <article class="article-card">
+        <h2>State Bus Transport (Maharashtra - MSRTC)</h2>
+        <p>
+          For daily and inter-city commutes, the Government of Maharashtra
+          offers vital benefits under specific state schemes:
+        </p>
+        <ul class="article-list">
+          <li>
+            <strong>Amrut Senior Citizen Scheme (75+ Years):</strong> Citizens
+            aged 75 and above are entitled to
+            <strong>100% free travel</strong> on all MSRTC (ST) buses across
+            Maharashtra upon showing a valid age ID (like Aadhaar).
+          </li>
+          <li>
+            <strong>Senior Citizen Discount (65 to 75 Years):</strong> Citizens
+            between 65 and 75 years receive a
+            <strong>50% ticket concession</strong> on MSRTC buses.
+          </li>
+          <li>
+            <strong>Reserved Seating:</strong> Specific seats are strictly
+            reserved for senior citizens in local city buses (like BEST in
+            Mumbai) to prevent them from having to stand during travel.
+          </li>
+        </ul>
+      </article>
 
-        <div class="page-flow-nav" style="margin-top: 40px;">
-            <button class="btn-next" onclick="location.href='/legal'">Next Page: Legal Protection ➔</button>
-        </div>
-
+      <div class="page-flow-nav" style="margin-top: 40px">
+        <button class="btn-next" onclick="location.href = '/legal'">
+          Next Page: Legal Protection ➔
+        </button>
+      </div>
     </main>
 
     <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-content">
-            <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
-            <h2>Ask a Question</h2>
-            <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
-                <label for="userName">Name (Optional):</label>
-                <input type="text" id="userName" name="userName" placeholder="Your Name">
-                
-                <label for="queryTopic">Topic *</label>
-                <select id="queryTopic" name="queryTopic" required>
-                    <option value="">--Select Topic--</option>
-                    <option value="Pension">Pension</option>
-                    <option value="Health">Health</option>
-                    <option value="Transport" selected>Transport</option>
-                    <option value="Legal">Legal</option>
-                </select>
+      <div class="modal-content">
+        <span class="close-btn" onclick="uiController.closeModal()"
+          >&times;</span
+        >
+        <h2>Ask a Question</h2>
+        <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
+          <label for="userName">Name (Optional):</label>
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            placeholder="Your Name"
+          />
 
-                <label for="userMessage">Message *</label>
-                <textarea id="userMessage" name="userMessage" placeholder="How can we help you regarding transport?" required></textarea>
-                
-                <button type="submit" class="btn-submit">Submit Query</button>
-                <div id="formStatus" aria-live="polite"></div>
-            </form>
-        </div>
+          <label for="queryTopic">Topic *</label>
+          <select id="queryTopic" name="queryTopic" required>
+            <option value="">--Select Topic--</option>
+            <option value="Pension">Pension</option>
+            <option value="Health">Health</option>
+            <option value="Transport" selected>Transport</option>
+            <option value="Legal">Legal</option>
+          </select>
+
+          <label for="userMessage">Message *</label>
+          <textarea
+            id="userMessage"
+            name="userMessage"
+            placeholder="How can we help you regarding transport?"
+            required
+          ></textarea>
+
+          <button type="submit" class="btn-submit">Submit Query</button>
+          <div id="formStatus" aria-live="polite"></div>
+        </form>
+      </div>
     </div>
 
     <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h3>ElderRights Portal</h3>
-                <p>A Community Engagement Project dedicated to empowering senior citizens in India with verified information on their legal rights, financial security, and welfare schemes.</p>
-            </div>
-            <div class="footer-section links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/pension">Economic Rights (Pension)</a></li>
-                    <li><a href="/health">Health Benefits (Ayushman)</a></li>
-                    <li><a href="/transport">Mobility (Concessions)</a></li>
-                    <li><a href="/legal">Legal Protection (2007 Act)</a></li>
-                </ul>
-            </div>
-            <div class="footer-section contact">
-                <h3>Emergency Help</h3>
-                <p>National Senior Citizen Helpline:<br>
-                    <strong><a href="tel:14567" class="helpline-link" aria-label="Call National Helpline 14567">📞 14567</a></strong>
-                </p>
-                <button onclick="uiController.openModal()" class="btn-footer-nav">Ask a Question</button>
-            </div>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h3>ElderRights Portal</h3>
+          <p>
+            A Community Engagement Project dedicated to empowering senior
+            citizens in India with verified information on their legal rights,
+            financial security, and welfare schemes.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 ElderRights Portal | Developed as per Mumbai University CEP Guidelines</p>
+        <div class="footer-section links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/pension">Economic Rights (Pension)</a></li>
+            <li><a href="/health">Health Benefits (Ayushman)</a></li>
+            <li><a href="/transport">Mobility (Concessions)</a></li>
+            <li><a href="/legal">Legal Protection (2007 Act)</a></li>
+          </ul>
         </div>
+        <div class="footer-section contact">
+          <h3>Emergency Help</h3>
+          <p>
+            National Senior Citizen Helpline:<br />
+            <strong
+              ><a
+                href="tel:14567"
+                class="helpline-link"
+                aria-label="Call National Helpline 14567"
+                >📞 14567</a
+              ></strong
+            >
+          </p>
+          <button onclick="uiController.openModal()" class="btn-footer-nav">
+            Ask a Question
+          </button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p style="font-size: 0.85rem; margin-bottom: 10px; color: #a4b0be">
+          <strong>Disclaimer:</strong> This portal is an educational project
+          under the Mumbai University CEP. While we strive for 100% factual
+          accuracy, government schemes and facilities are subject to change.
+          Users are advised to verify details on official government portals
+          (myscheme.gov.in) before applying.
+        </p>
+        <p>
+          &copy; 2026 ElderRights Portal | Developed as per Mumbai University
+          CEP Guidelines
+        </p>
+      </div>
     </footer>
 
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,as,or,sa,mai,sd,ne,doi,gom,mni',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages:
+              "en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,as,or,sa,mai,sd,ne,doi,gom,mni",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element",
+        );
+      }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      defer
+    ></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+  </body>
 </html>
