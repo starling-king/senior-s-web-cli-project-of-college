@@ -1,21 +1,73 @@
 /* =====================================================================
-   1. UI CONTROLLER (Handles Accessibility and Visuals)
+   1. UI CONTROLLER (State Persistence & Accessibility)
    ===================================================================== */
 class UIController {
     constructor() {
-        this.currentFontSize = 18; // Maps to var(--base-font-size)
-        this.isHighContrast = false;
+        // 1. Check browser memory for saved settings, otherwise use defaults
+        this.currentFontSize = parseInt(localStorage.getItem('savedFontSize')) || 18;
+        this.isHighContrast = localStorage.getItem('savedContrast') === 'true';
+
+        // 2. Apply saved settings instantly when the page loads
+        this._applySavedState();
+    }
+
+    _applySavedState() {
+        // Apply saved font size
+        document.documentElement.style.fontSize = `${this.currentFontSize}px`;
+        document.documentElement.style.setProperty('--base-font-size', `${this.currentFontSize}px`);
+
+        // Apply saved high contrast
+        if (this.isHighContrast) {
+            document.documentElement.setAttribute('data-theme', 'high-contrast');
+            // We must wait a tiny fraction of a second to ensure the button exists in the DOM
+            setTimeout(() => {
+                const contrastBtn = document.querySelector('.btn-contrast');
+                if (contrastBtn) contrastBtn.innerHTML = '☀️ Normal View';
+            }, 50);
+        }
+    }
+
+    // Adjusts font size dynamically and saves to memory
+    changeFontSize(step) {
+        if (step === 0) {
+            this.currentFontSize = 18; // Reset to default
+        } else {
+            let newSize = this.currentFontSize + (step * 2);
+            if (newSize >= 14 && newSize <= 28) {
+                this.currentFontSize = newSize;
+            }
+        }
+        
+        // Apply changes
+        document.documentElement.style.fontSize = `${this.currentFontSize}px`;
+        document.documentElement.style.setProperty('--base-font-size', `${this.currentFontSize}px`);
+        
+        // Save to browser memory
+        localStorage.setItem('savedFontSize', this.currentFontSize);
+    }
+
+    // Toggles High Contrast, updates button text, and saves to memory
+    toggleHighContrast() {
+        this.isHighContrast = !this.isHighContrast;
+        const contrastBtn = document.querySelector('.btn-contrast'); 
+
+        if (this.isHighContrast) {
+            document.documentElement.setAttribute('data-theme', 'high-contrast');
+            if (contrastBtn) contrastBtn.innerHTML = '☀️ Normal View';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (contrastBtn) contrastBtn.innerHTML = '🌓 Contrast';
+        }
+        
+        // Save to browser memory
+        localStorage.setItem('savedContrast', this.isHighContrast);
     }
 
     openModal() {
         const modal = document.getElementById('feedbackModal');
         modal.style.display = 'flex';
         modal.setAttribute('aria-hidden', 'false');
-        
-        // BUG FIX: Stop the background from scrolling while modal is open
         document.body.style.overflow = 'hidden'; 
-        
-        // ACCESSIBILITY FIX: Automatically focus the first input for keyboard users
         document.getElementById('userName').focus();
     }
 
@@ -23,44 +75,7 @@ class UIController {
         const modal = document.getElementById('feedbackModal');
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
-        
-        // BUG FIX: Restore background scrolling when modal closes
         document.body.style.overflow = 'auto'; 
-    }
-
-    // Adjusts font size dynamically without breaking layout
-   // Adjusts font size dynamically and scales the entire website
-    changeFontSize(step) {
-        if (step === 0) {
-            this.currentFontSize = 18; // Reset to default
-        } else {
-            // Limit how big/small text can get to prevent UI breakage
-            let newSize = this.currentFontSize + (step * 2);
-            if (newSize >= 14 && newSize <= 28) {
-                this.currentFontSize = newSize;
-            }
-        }
-        
-        // BUG FIX: Directly update the root HTML font-size. 
-        // This forces all 'rem' units across the entire website to scale instantly!
-        document.documentElement.style.fontSize = `${this.currentFontSize}px`;
-        document.documentElement.style.setProperty('--base-font-size', `${this.currentFontSize}px`);
-    }
-
-    // Toggles High Contrast & Updates Button Text
-    toggleHighContrast() {
-        this.isHighContrast = !this.isHighContrast;
-        const contrastBtn = document.querySelector('.btn-contrast'); // Select the button
-
-        if (this.isHighContrast) {
-            document.documentElement.setAttribute('data-theme', 'high-contrast');
-            // BUG FIX: Change text so user knows how to go back
-            if (contrastBtn) contrastBtn.innerHTML = '☀️ Normal View';
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            // Revert text
-            if (contrastBtn) contrastBtn.innerHTML = '🌓 Contrast';
-        }
     }
 
     displayFormMessage(message, isSuccess) {

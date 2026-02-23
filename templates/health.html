@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Health Benefits | ElderRights Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.2">
+</head>
+<body>
+    
+    <div class="utility-bar" aria-label="Accessibility Tools">
+        <div class="utility-container">
+            <div class="translate-wrapper">
+                <span class="util-label">🌐 Select Language:</span>
+                <div id="google_translate_element"></div>
+            </div>
+            <div class="accessibility-tools">
+                <span class="util-label">🔍 Text Size:</span>
+                <div class="zoom-buttons">
+                    <button class="btn-util" onclick="uiController.changeFontSize(-1)" aria-label="Zoom Out">A -</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(0)" aria-label="Reset Zoom">A</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(1)" aria-label="Zoom In">A +</button>
+                </div>
+                <button class="btn-util btn-contrast" onclick="uiController.toggleHighContrast()" aria-label="Toggle High Contrast">🌓 Contrast</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-logo">ElderRights</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pension">Pension</a></li>
+            <li><a href="/health">Health</a></li>
+            <li><a href="/transport">Transport</a></li>
+            <li><a href="/legal">Legal</a></li>
+            <li><button onclick="uiController.openModal()" class="btn-nav">Ask a Question</button></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Health & Medical Benefits</h1>
+        <p>Ensuring accessible, affordable, and respectful healthcare for elderly citizens.</p>
+    </header>
+
+    <main class="article-container" id="main-content">
+        
+        <div style="text-align: center; margin-bottom: 10px;">
+            <img src="{{ url_for('static', filename='images/health.jpg') }}" alt="Senior Citizen Healthcare" class="responsive-img" style="max-height: 400px; width: 100%;">
+        </div>
+
+        <article class="article-card">
+            <h2>Ayushman Bharat (AB-PMJAY) Expansion</h2>
+            <p>Healthcare expenses are a major concern for the elderly. To address this, the Government of India has significantly expanded the <strong>Ayushman Bharat Pradhan Mantri Jan Arogya Yojana</strong>.</p>
+            <p>This landmark expansion covers <strong>all senior citizens aged 70 years and above</strong>, completely irrespective of their income status. It provides free health insurance coverage of up to <strong>₹5 lakh per family per year</strong>, ensuring elders can receive high-quality medical treatment without facing a financial burden.</p>
+        </article>
+
+        <article class="article-card">
+            <h2>National Programme for the Health Care of the Elderly (NPHCE)</h2>
+            <p>Recognizing the unique medical needs of the aging population, the NPHCE was established to provide dedicated, specialized care for senior citizens across government medical facilities.</p>
+            <ul class="article-list">
+                <li><strong>Dedicated Queues:</strong> Separate registration and pharmacy queues for seniors to reduce waiting times.</li>
+                <li><strong>Geriatric Clinics:</strong> Specialized outpatient departments (OPDs) focusing on age-related ailments.</li>
+                <li><strong>Reserved Beds:</strong> Dedicated wards and beds in district hospitals to ensure immediate admission and care.</li>
+            </ul>
+        </article>
+
+        <div class="page-flow-nav" style="margin-top: 40px;">
+            <button class="btn-next" onclick="location.href='/transport'">Next Page: Mobility & Transport ➔</button>
+        </div>
+
+    </main>
+
+    <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
+            <h2>Ask a Question</h2>
+            <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
+                <label for="userName">Name (Optional):</label>
+                <input type="text" id="userName" name="userName" placeholder="Your Name">
+                
+                <label for="queryTopic">Topic *</label>
+                <select id="queryTopic" name="queryTopic" required>
+                    <option value="">--Select Topic--</option>
+                    <option value="Pension">Pension</option>
+                    <option value="Health" selected>Health</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Legal">Legal</option>
+                </select>
+
+                <label for="userMessage">Message *</label>
+                <textarea id="userMessage" name="userMessage" placeholder="How can we help you?" required></textarea>
+                
+                <button type="submit" class="btn-submit">Submit Query</button>
+                <div id="formStatus" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>ElderRights Portal</h3>
+                <p>A Community Engagement Project dedicated to empowering senior citizens in India with verified information on their legal rights, financial security, and welfare schemes.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pension">Economic Rights (Pension)</a></li>
+                    <li><a href="/health">Health Benefits (Ayushman)</a></li>
+                    <li><a href="/transport">Mobility (Concessions)</a></li>
+                    <li><a href="/legal">Legal Protection (2007 Act)</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Emergency Help</h3>
+                <p>National Senior Citizen Helpline:<br>
+                    <strong><a href="tel:14567" class="helpline-link" aria-label="Call National Helpline 14567">📞 14567</a></strong>
+                </p>
+                <button onclick="uiController.openModal()" class="btn-footer-nav">Ask a Question</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ElderRights Portal | Developed as per Mumbai University CEP Guidelines</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,as,or,sa,mai,sd,ne,doi,gom,mni',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

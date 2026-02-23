@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Legal Protection | ElderRights Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.2">
+</head>
+<body>
+    
+    <div class="utility-bar" aria-label="Accessibility Tools">
+        <div class="utility-container">
+            <div class="translate-wrapper">
+                <span class="util-label">🌐 Select Language:</span>
+                <div id="google_translate_element"></div>
+            </div>
+            <div class="accessibility-tools">
+                <span class="util-label">🔍 Text Size:</span>
+                <div class="zoom-buttons">
+                    <button class="btn-util" onclick="uiController.changeFontSize(-1)" aria-label="Zoom Out">A -</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(0)" aria-label="Reset Zoom">A</button>
+                    <button class="btn-util" onclick="uiController.changeFontSize(1)" aria-label="Zoom In">A +</button>
+                </div>
+                <button class="btn-util btn-contrast" onclick="uiController.toggleHighContrast()" aria-label="Toggle High Contrast">🌓 Contrast</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-logo">ElderRights</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pension">Pension</a></li>
+            <li><a href="/health">Health</a></li>
+            <li><a href="/transport">Transport</a></li>
+            <li><a href="/legal">Legal</a></li>
+            <li><button onclick="uiController.openModal()" class="btn-nav">Ask a Question</button></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Legal Protection & Welfare</h1>
+        <p>Promoting dignity, respect, and legal security for parents and senior citizens.</p>
+    </header>
+
+    <main class="article-container" id="main-content">
+        
+        <div style="text-align: center; margin-bottom: 10px;">
+            <img src="{{ url_for('static', filename='images/legal.jpg') }}" alt="Gavel representing legal protection" class="responsive-img" style="max-height: 400px; width: 100%;">
+        </div>
+
+        <article class="article-card">
+            <h2>The Maintenance and Welfare of Parents and Senior Citizens Act, 2007</h2>
+            <p>While society values and respects its elders, there are unfortunate instances where senior citizens face neglect or abuse from their own families. To ensure strict legal protection, the Government of India enacted this landmark legislation.</p>
+            <p>This Act makes it a <strong>legal obligation</strong> for children and heirs to provide maintenance to senior citizens and parents, ensuring they can lead a normal, dignified life.</p>
+        </article>
+
+        <article class="article-card">
+            <h2>Key Rights & Provisions</h2>
+            <ul class="article-list">
+                <li><strong>Right to Maintenance:</strong> Parents (biological, adoptive, or step-parents) can claim a monthly maintenance amount from their adult children if they are unable to maintain themselves.</li>
+                <li><strong>Protection of Property:</strong> If a senior citizen has transferred their property to an heir on the condition that they will provide basic amenities, and the heir refuses to do so, the transfer can be declared legally void by a tribunal.</li>
+                <li><strong>Speedy Justice:</strong> Special Maintenance Tribunals have been established in every sub-division to ensure cases are resolved within 90 days, without the need for expensive lawyers.</li>
+                <li><strong>Protection Against Abandonment:</strong> Abandoning a senior citizen is a criminal offense punishable by imprisonment and fines.</li>
+            </ul>
+        </article>
+
+        <article class="article-card" style="text-align: center; border-left: none; border-top: 6px solid var(--btn-bg); background: linear-gradient(to bottom, var(--card-bg), var(--secondary-color));">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
+            <h2 style="color: var(--primary-color);">Knowledge is Your Shield, Dignity is Your Right.</h2>
+            <p style="font-size: 1.15rem; max-width: 800px; margin: 0 auto 25px auto;">
+                Protecting senior citizens is not only a government responsibility but also a moral duty. 
+                By ensuring financial support, healthcare, and legal protection, we can help elders live with independence and security. 
+                Thank you for exploring the ElderRights Portal and empowering yourself with this knowledge!
+            </p>
+            
+            <button class="btn-next" onclick="uiController.openModal()" style="box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);">
+                💬 Have a Question? Submit Your Feedback Here
+            </button>
+        </article>
+
+    </main>
+
+    <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
+            <h2>Ask a Question</h2>
+            <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
+                <label for="userName">Name (Optional):</label>
+                <input type="text" id="userName" name="userName" placeholder="Your Name">
+                
+                <label for="queryTopic">Topic *</label>
+                <select id="queryTopic" name="queryTopic" required>
+                    <option value="">--Select Topic--</option>
+                    <option value="Pension">Pension</option>
+                    <option value="Health">Health</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Legal" selected>Legal</option>
+                </select>
+
+                <label for="userMessage">Message / Feedback *</label>
+                <textarea id="userMessage" name="userMessage" placeholder="How can we help you, or what did you think of the portal?" required></textarea>
+                
+                <button type="submit" class="btn-submit">Submit Query</button>
+                <div id="formStatus" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>ElderRights Portal</h3>
+                <p>A Community Engagement Project dedicated to empowering senior citizens in India with verified information on their legal rights, financial security, and welfare schemes.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/pension">Economic Rights (Pension)</a></li>
+                    <li><a href="/health">Health Benefits (Ayushman)</a></li>
+                    <li><a href="/transport">Mobility (Concessions)</a></li>
+                    <li><a href="/legal">Legal Protection (2007 Act)</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Emergency Help</h3>
+                <p>National Senior Citizen Helpline:<br>
+                    <strong><a href="tel:14567" class="helpline-link" aria-label="Call National Helpline 14567">📞 14567</a></strong>
+                </p>
+                <button onclick="uiController.openModal()" class="btn-footer-nav">Ask a Question</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ElderRights Portal | Developed as per Mumbai University CEP Guidelines</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,te,mr,ta,ur,gu,kn,ml,pa,as,or,sa,mai,sd,ne,doi,gom,mni',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
