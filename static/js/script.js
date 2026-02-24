@@ -87,6 +87,32 @@ class UIController {
             setTimeout(() => { statusDiv.textContent = ''; }, 5000);
         }
     }
+
+    // Automatic Slideshow Engine
+    initSlideshow() {
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        
+        // Safety check: only run if the slideshow exists on the current page
+        if (slides.length === 0) return;
+
+        const showSlides = () => {
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            // Reset to first slide if we hit the end
+            if (slideIndex > slides.length) { slideIndex = 1; }    
+            // Show the current slide
+            slides[slideIndex - 1].style.display = "block";  
+            
+            // Change image every 3.5 seconds (3500 milliseconds)
+            setTimeout(showSlides, 3500); 
+        };
+
+        showSlides(); // Start the loop
+    }
 }
 /* =====================================================================
    2. API SERVICE (Handles Async Network Requests securely)
@@ -148,3 +174,8 @@ class APIService {
 // Instantiate classes to attach to the global window for HTML onclick attributes
 const uiController = new UIController();
 const apiService = new APIService(uiController);
+
+// Automatically start the slideshow when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    uiController.initSlideshow();
+});
