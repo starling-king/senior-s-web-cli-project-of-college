@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Economic Rights & Pension | ElderRights Portal</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}?v=1.2"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div class="utility-bar" aria-label="Accessibility Tools">
@@ -55,16 +56,14 @@
 
     <nav class="main-nav">
       <div class="nav-logo">ElderRights</div>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/pension">Pension</a></li>
-        <li><a href="/health">Health</a></li>
-        <li><a href="/transport">Transport</a></li>
-        <li><a href="/legal">Legal</a></li>
+     <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pension.html">Pension</a></li>
+        <li><a href="health.html">Health</a></li>
+        <li><a href="transport.html">Transport</a></li>
+        <li><a href="legal.html">Legal</a></li>
         <li>
-          <button onclick="uiController.openModal()" class="btn-nav">
-            Ask a Question
-          </button>
+          <button onclick="uiController.openModal()" class="btn-nav">Ask a Question</button>
         </li>
       </ul>
     </nav>
@@ -77,11 +76,10 @@
     <main class="article-container" id="main-content">
       <div style="text-align: center; margin-bottom: 10px">
         <img
-          src="{{ url_for('static', filename='images/pension.jpg') }}"
-          alt="Pension Benefits"
-          class="responsive-img"
-          style="max-height: 400px; width: 100%"
-        />
+            src="images/pension.jpg"
+            alt="Senior Citizens Smiling"
+            class="responsive-img"
+          />
       </div>
 
       <article class="article-card">
@@ -134,44 +132,30 @@
       </article>
 
       <div class="page-flow-nav" style="margin-top: 40px">
-        <button class="btn-next" onclick="location.href = '/health'">
+        <button class="btn-next" onclick="location.href = 'health.html'">
           Next Page: Health Benefits ➔
         </button>
       </div>
     </main>
 
     <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
-      <div class="modal-content">
-        <span class="close-btn" onclick="uiController.closeModal()"
-          >&times;</span
-        >
-        <h2>Ask a Question</h2>
-        <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
-          <label for="userName">Name (Optional):</label>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            placeholder="Your Name"
-          />
-          <label for="queryTopic">Topic *</label>
-          <select id="queryTopic" name="queryTopic" required>
-            <option value="">--Select Topic--</option>
-            <option value="Pension" selected>Pension</option>
-            <option value="Health">Health</option>
-            <option value="Transport">Transport</option>
-            <option value="Legal">Legal</option>
-          </select>
-          <label for="userMessage">Message *</label>
-          <textarea
-            id="userMessage"
-            name="userMessage"
-            placeholder="How can we help you?"
-            required
-          ></textarea>
-          <button type="submit" class="btn-submit">Submit Query</button>
-          <div id="formStatus" aria-live="polite"></div>
-        </form>
+      <div class="modal-content" style="text-align: center; padding: 40px 20px;">
+        <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
+        
+        <div style="font-size: 3rem; margin-bottom: 20px;">📝</div>
+        <h2 style="color: var(--primary-color);">Community Survey & Feedback</h2>
+        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #555;">
+            To better understand the needs of our elders, we have created an official community survey. 
+            Please click the button below to share your thoughts or ask a question.
+        </p>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSer8U01h0qXJmCHxvYrnHSfbm_OJPnxm2AyUxXi0PW23bNjOA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn-next" style="display: inline-block; text-decoration: none; box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);">
+            Open Official Survey Form ➔
+        </a>
+        
+        <p style="margin-top: 25px; font-size: 0.9rem; color: #888;">
+            <em>Note: This secure form will open safely in a new tab.</em>
+        </p>
       </div>
     </div>
 
@@ -185,16 +169,18 @@
             financial security, and welfare schemes.
           </p>
         </div>
+
         <div class="footer-section links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/pension">Economic Rights (Pension)</a></li>
-            <li><a href="/health">Health Benefits (Ayushman)</a></li>
-            <li><a href="/transport">Mobility (Concessions)</a></li>
-            <li><a href="/legal">Legal Protection (2007 Act)</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pension.html">Economic Rights (Pension)</a></li>
+            <li><a href="health.html">Health Benefits (Ayushman)</a></li>
+            <li><a href="transport.html">Mobility (Concessions)</a></li>
+            <li><a href="legal.html">Legal Protection (2007 Act)</a></li>
           </ul>
         </div>
+
         <div class="footer-section contact">
           <h3>Emergency Help</h3>
           <p>
@@ -246,6 +232,6 @@
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
       defer
     ></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

@@ -16,10 +16,14 @@
     />
     <meta name="author" content="Community Engagement Project" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}?v=1.1"
     />
+
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div class="utility-bar" aria-label="Accessibility Tools">
@@ -68,11 +72,11 @@
     <nav class="main-nav">
       <div class="nav-logo">ElderRights</div>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/pension">Pension</a></li>
-        <li><a href="/health">Health</a></li>
-        <li><a href="/transport">Transport</a></li>
-        <li><a href="/legal">Legal</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pension.html">Pension</a></li>
+        <li><a href="health.html">Health</a></li>
+        <li><a href="transport.html">Transport</a></li>
+        <li><a href="legal.html">Legal</a></li>
         <li>
           <button onclick="uiController.openModal()" class="btn-nav">
             Ask a Question
@@ -114,7 +118,7 @@
         </div>
         <div class="intro-image">
           <img
-            src="{{ url_for('static', filename='images/intro.jpg') }}"
+            src="images/intro.jpg"
             alt="Senior Citizens Smiling"
             class="responsive-img"
           />
@@ -124,15 +128,10 @@
 
     <section class="video-guide" aria-label="Video Introduction">
       <video class="video-player" width="100%" controls preload="none">
-        <source
-          src="{{ url_for('static', filename='videos/Senior_Citizen_s_Guide.mp4') }}"
-          type="video/mp4"
-        />
+        <source src="videos/Senior_Citizen_s_Guide.mp4" type="video/mp4" />
         <p>
           Your browser does not support the video player.
-          <a
-            href="{{ url_for('static', filename='videos/Senior_Citizen_s_Guide.mp4') }}"
-            target="_blank"
+          <a href="videos/Senior_Citizen_s_Guide.mp4" target="_blank"
             >Click here to view.</a
           >
         </p>
@@ -240,69 +239,31 @@
     </main>
 
     <div class="page-flow-nav">
-      <button class="btn-next" onclick="location.href = '/pension'">
+      <button class="btn-next" onclick="location.href = 'pension.html'">
         Start Guide: Economic Rights ➔
       </button>
     </div>
 
     <div id="feedbackModal" class="modal-overlay" aria-hidden="true">
-      <div class="modal-content">
-        <span class="close-btn" onclick="uiController.closeModal()"
-          >&times;</span
-        >
-        <h2>Ask a Question</h2>
-        <form id="feedbackForm" onsubmit="apiService.submitFeedback(event)">
-          <label for="userName">Name (Optional):</label>
-          <input
-            type="text"
-            id="userName"
-            name="userName"
-            placeholder="Your Name"
-          />
-
-          <label for="queryTopic">Topic *</label>
-          <select id="queryTopic" name="queryTopic" required>
-            <option value="">--Select Topic--</option>
-            <option value="Pension">Pension</option>
-            <option value="Health">Health</option>
-            <option value="Transport">Transport</option>
-            <option value="Legal">Legal</option>
-          </select>
-
-          <label for="userMessage">Message *</label>
-          <textarea
-            id="userMessage"
-            name="userMessage"
-            placeholder="How can we help you?"
-            required
-          ></textarea>
-
-          <button type="submit" class="btn-submit">Submit Query</button>
-          <div id="formStatus" aria-live="polite"></div>
-        </form>
+      <div class="modal-content" style="text-align: center; padding: 40px 20px;">
+        <span class="close-btn" onclick="uiController.closeModal()">&times;</span>
+        
+        <div style="font-size: 3rem; margin-bottom: 20px;">📝</div>
+        <h2 style="color: var(--primary-color);">Community Survey & Feedback</h2>
+        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #555;">
+            To better understand the needs of our elders, we have created an official community survey. 
+            Please click the button below to share your thoughts or ask a question.
+        </p>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSer8U01h0qXJmCHxvYrnHSfbm_OJPnxm2AyUxXi0PW23bNjOA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn-next" style="display: inline-block; text-decoration: none; box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);">
+            Open Official Survey Form ➔
+        </a>
+        
+        <p style="margin-top: 25px; font-size: 0.9rem; color: #888;">
+            <em>Note: This secure form will open safely in a new tab.</em>
+        </p>
       </div>
     </div>
-
-<section class="community-slideshow-section" aria-label="Community Engagement">
-        <div class="gallery-header">
-            <h2>Community Engagement</h2>
-        </div>
-
-        <div class="slideshow-container">
-            <div class="slide fade">
-                <img src="{{ url_for('static', filename='images/survey1.jpg') }}" alt="Field Work Evidence 1">
-            </div>
-            <div class="slide fade">
-                <img src="{{ url_for('static', filename='images/interaction.jpg') }}" alt="Field Work Evidence 2">
-            </div>
-            <div class="slide fade">
-                <img src="{{ url_for('static', filename='images/analysis.jpg') }}" alt="Field Work Evidence 3">
-            </div>
-            <div class="slide fade">
-                <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="Field Work Evidence 4">
-            </div>
-        </div>
-    </section>
 
     <footer class="site-footer">
       <div class="footer-content">
@@ -318,11 +279,11 @@
         <div class="footer-section links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/pension">Economic Rights (Pension)</a></li>
-            <li><a href="/health">Health Benefits (Ayushman)</a></li>
-            <li><a href="/transport">Mobility (Concessions)</a></li>
-            <li><a href="/legal">Legal Protection (2007 Act)</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pension.html">Economic Rights (Pension)</a></li>
+            <li><a href="health.html">Health Benefits (Ayushman)</a></li>
+            <li><a href="transport.html">Mobility (Concessions)</a></li>
+            <li><a href="legal.html">Legal Protection (2007 Act)</a></li>
           </ul>
         </div>
 
@@ -379,6 +340,6 @@
       defer
     ></script>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
